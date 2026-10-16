@@ -2,598 +2,1093 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#101827">
-  <title>Kayal | Digital Resume</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05030b">
+<meta name="description" content="Kayal's cinematic digital resume and software engineering portfolio.">
+<title>Kayal ♡ | Digital Universe</title>
 
-  <style>
-    /* ===== BASIC STYLING ===== */
-    :root {
-      --bg: #0b1120;
-      --card: #151f32;
-      --text: #f1f5f9;
-      --muted: #aab7ca;
-      --accent: #67e8c2;
-      --border: rgba(255,255,255,0.12);
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+<style>
+:root{
+  --bg:#05030b;
+  --surface:#0c0918;
+  --card:rgba(18,12,34,.76);
+  --purple:#b44aff;
+  --pink:#ef78ff;
+  --violet:#7c3cff;
+  --text:#f6f0ff;
+  --muted:#b2a6ca;
+  --border:rgba(180,74,255,.25);
+  --glow:0 0 25px rgba(166,70,255,.22);
+}
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{
+  font-family:Inter,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+::selection{background:var(--purple);color:white}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+/* CINEMATIC BACKGROUND */
 
-    .container {
-      width: min(1050px, 90%);
-      margin: auto;
-    }
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  background:
+    radial-gradient(ellipse at 80% 15%,#5c159c2b,transparent 40%),
+    radial-gradient(ellipse at 10% 65%,#34116c30,transparent 40%),
+    linear-gradient(135deg,#05030b,#090515 55%,#05030b);
+}
+#stars{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+.ambient{
+  position:fixed;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  filter:blur(100px);
+  opacity:.12;
+  pointer-events:none;
+  z-index:-1;
+  background:var(--purple);
+  animation:floatGlow 12s ease-in-out infinite alternate;
+}
+.ambient.one{top:10%;right:-180px}
+.ambient.two{bottom:5%;left:-180px;animation-delay:-5s;background:#5e37ff}
+@keyframes floatGlow{
+  from{transform:translateY(-25px)}
+  to{transform:translateY(45px)}
+}
 
-    /* ===== NAVIGATION ===== */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(11,17,32,0.95);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
+/* NAVBAR */
 
-    nav {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
+header{
+  position:fixed;
+  top:0;left:0;width:100%;
+  z-index:100;
+  background:rgba(5,3,11,.78);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+nav{
+  max-width:1250px;
+  min-height:72px;
+  margin:auto;
+  padding:12px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.logo{
+  font-family:"Dancing Script",cursive;
+  font-size:31px;
+  color:white;
+  white-space:nowrap;
+}
+.logo span{color:var(--purple)}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{
+  font-size:12px;
+  color:var(--muted);
+  transition:.3s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--pink)}
+.nav-links a.active::after{
+  content:"";
+  display:block;
+  height:2px;
+  margin-top:4px;
+  background:var(--purple);
+  box-shadow:0 0 10px var(--purple);
+}
+.menu-btn{
+  display:none;
+  color:var(--pink);
+  background:none;
+  border:0;
+  font-size:23px;
+  cursor:pointer;
+}
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--accent);
-    }
+/* LAYOUT */
 
-    .nav-links {
-      display: flex;
-      gap: 22px;
-      list-style: none;
-      flex-wrap: wrap;
-    }
+.container{width:min(1120px,90%);margin:auto}
+section{padding:90px 0;scroll-margin-top:65px}
+.section-heading{margin-bottom:30px}
+.section-number{
+  font-size:11px;
+  letter-spacing:4px;
+  color:var(--pink);
+}
+.section-title{
+  font-size:clamp(27px,4vw,39px);
+  letter-spacing:-1px;
+  line-height:1.25;
+}
+.section-title span{
+  color:var(--pink);
+  text-shadow:0 0 25px #b44aff45;
+}
+.section-intro{color:var(--muted);font-size:14px;margin-top:9px}
+.card{
+  background:linear-gradient(145deg,rgba(24,15,44,.85),rgba(9,7,19,.85));
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:24px;
+  backdrop-filter:blur(12px);
+  transition:transform .35s,border-color .35s,box-shadow .35s;
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:#b44aff88;
+  box-shadow:var(--glow);
+}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.muted{color:var(--muted)}
+.purple{color:var(--pink)}
 
-    .nav-links a {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
+/* HERO */
 
-    .nav-links a:hover {
-      color: var(--accent);
-    }
+.hero{
+  min-height:100vh;
+  padding-top:125px;
+  padding-bottom:70px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:center;
+  gap:40px;
+  position:relative;
+}
+.hero-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  border:1px solid #b44aff50;
+  color:var(--pink);
+  background:#b44aff0c;
+  padding:7px 14px;
+  border-radius:30px;
+  font-size:10px;
+  letter-spacing:2px;
+  margin-bottom:24px;
+}
+.status-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#d9a1ff;
+  box-shadow:0 0 12px var(--purple);
+  animation:pulse 1.5s infinite;
+}
+@keyframes pulse{50%{opacity:.35;transform:scale(.75)}}
+.hero h1{
+  font-size:clamp(42px,6.7vw,76px);
+  line-height:1.12;
+  letter-spacing:-3px;
+}
+.script-name{
+  font-family:"Dancing Script",cursive;
+  font-weight:600;
+  color:var(--purple);
+  text-shadow:0 0 28px #a344ff55;
+}
+.heart{color:var(--pink);font-weight:400}
+.hero-subtitle{font-size:clamp(16px,2vw,21px);margin:18px 0 13px}
+#typing{color:var(--pink)}
+.cursor{color:var(--pink);animation:blink .7s infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-description{max-width:540px;color:var(--muted);font-size:14px}
+.hero-motto{
+  color:#d5b6ff;
+  font-family:"Dancing Script",cursive;
+  font-size:22px;
+  margin:17px 0 27px;
+}
+.buttons{display:flex;flex-wrap:wrap;gap:13px}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:12px 19px;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:600;
+  border:1px solid var(--purple);
+  cursor:pointer;
+  transition:.3s;
+}
+.btn-primary{
+  color:white;
+  background:linear-gradient(110deg,#7830e8,#b344ff);
+  box-shadow:0 0 24px #9b40ff45;
+}
+.btn-outline{background:#ffffff04;color:var(--pink)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 25px #a344ff50}
+.scroll-cue{
+  margin-top:35px;
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:2px;
+}
+.scroll-cue i{color:var(--pink);margin-right:10px}
 
-    /* ===== HERO SECTION ===== */
-    .hero {
-      min-height: 78vh;
-      display: flex;
-      align-items: center;
-      padding: 80px 0;
-    }
+/* PROFILE ART */
 
-    .hero-content {
-      max-width: 750px;
-    }
+.profile-stage{
+  min-height:440px;
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+.orbit{
+  width:min(340px,75vw);
+  aspect-ratio:1;
+  border:1px solid #c06aff75;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  position:relative;
+  box-shadow:0 0 35px #9d39ff22,inset 0 0 35px #9d39ff10;
+  animation:orbitGlow 5s ease-in-out infinite alternate;
+}
+@keyframes orbitGlow{
+  to{box-shadow:0 0 60px #9d39ff45,inset 0 0 55px #9d39ff20}
+}
+.orbit::before,.orbit::after{
+  content:"";
+  position:absolute;
+  border:1px solid #b44aff45;
+  border-radius:50%;
+}
+.orbit::before{inset:-16px}
+.orbit::after{inset:15px;border-style:dashed;animation:spin 45s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.profile-inner{
+  width:83%;height:83%;
+  border-radius:50%;
+  overflow:hidden;
+  border:2px solid var(--purple);
+  background:linear-gradient(145deg,#30135b,#100a20);
+  display:grid;
+  place-items:center;
+  box-shadow:0 0 35px #9e42ff35;
+}
+.profile-inner img{width:100%;height:100%;object-fit:cover}
+.profile-placeholder{
+  text-align:center;
+  color:var(--pink);
+  padding:20px;
+}
+.profile-placeholder i{font-size:65px;display:block;margin-bottom:12px}
+.profile-placeholder span{font-size:12px;color:var(--muted)}
+.floating-note{
+  position:absolute;
+  right:0;top:10%;
+  font-family:"Dancing Script",cursive;
+  color:#d7a6ff;
+  font-size:23px;
+  transform:rotate(7deg);
+}
+.float-icon{
+  position:absolute;
+  color:var(--pink);
+  filter:drop-shadow(0 0 9px var(--purple));
+  animation:bob 4s ease-in-out infinite;
+}
+.float-icon.a{top:18%;left:9%;font-size:26px}
+.float-icon.b{bottom:18%;right:7%;font-size:25px;animation-delay:-2s}
+@keyframes bob{50%{transform:translateY(-14px) rotate(10deg)}}
 
-    .tag {
-      display: inline-block;
-      padding: 6px 14px;
-      border: 1px solid rgba(103,232,194,0.4);
-      border-radius: 30px;
-      color: var(--accent);
-      margin-bottom: 22px;
-      font-size: 0.9rem;
-    }
+/* ABOUT */
 
-    h1 {
-      font-size: clamp(2.8rem, 8vw, 5.5rem);
-      line-height: 1.1;
-      letter-spacing: -2px;
-      margin-bottom: 20px;
-    }
+.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px}
+.about-text{color:#c8bddc;font-size:14px}
+.about-text p+p{margin-top:15px}
+.traits{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.trait{
+  text-align:center;
+  border:1px solid #a344ff20;
+  border-radius:12px;
+  padding:20px 10px;
+  background:#ffffff03;
+}
+.trait i{display:block;font-size:22px;color:var(--pink);margin-bottom:9px}
+.trait h3{font-size:12px}
+.trait p{font-size:11px;color:var(--muted);margin-top:3px}
+.quote-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
+}
+.quote-mark{font-size:45px;color:var(--purple);line-height:1}
+.quote{
+  font-family:"Dancing Script",cursive;
+  color:#dfb9ff;
+  font-size:28px;
+}
 
-    h1 span {
-      color: var(--accent);
-    }
+/* EDUCATION */
 
-    .hero p {
-      color: var(--muted);
-      font-size: 1.1rem;
-      max-width: 620px;
-      margin-bottom: 28px;
-    }
+.education-item{display:flex;gap:18px;align-items:flex-start}
+.education-icon{
+  min-width:55px;height:55px;
+  display:grid;place-items:center;
+  border:1px solid var(--border);
+  background:#9c40ff15;
+  border-radius:15px;
+  color:var(--pink);
+  font-size:24px;
+}
+.education-item h3{font-size:16px}
+.education-item p{font-size:13px;color:var(--muted);margin-top:5px}
+.pill{
+  display:inline-block;
+  border:1px solid #a344ff55;
+  border-radius:30px;
+  padding:3px 10px;
+  color:#d9a9ff;
+  font-size:10px;
+  margin:8px 0;
+}
 
-    .buttons {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
+/* SKILLS */
 
-    .btn {
-      display: inline-block;
-      padding: 12px 22px;
-      border-radius: 8px;
-      font-weight: bold;
-      border: 1px solid var(--accent);
-      cursor: pointer;
-      font-size: 0.95rem;
-      transition: 0.25s;
-    }
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.skill-heading{font-size:15px;margin-bottom:20px}
+.skill-heading i{color:var(--pink);margin-right:9px}
+.skill{margin-bottom:17px}
+.skill-top{display:flex;justify-content:space-between;font-size:12px;margin-bottom:7px}
+.skill-top span:last-child{color:#d5a0ff}
+.track{height:6px;background:#252039;border-radius:10px;overflow:hidden}
+.fill{
+  height:100%;width:0;border-radius:10px;
+  background:linear-gradient(90deg,#7435d9,#e277ff);
+  box-shadow:0 0 12px #a54bff55;
+  transition:width 1.5s ease;
+}
+.fill.animate{width:var(--level)}
+.skill-chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{
+  border:1px solid var(--border);
+  background:#ffffff04;
+  border-radius:8px;
+  padding:8px 12px;
+  font-size:11px;
+  color:#dfd0f7;
+}
+.chip i{color:var(--pink);margin-right:6px}
 
-    .btn-primary {
-      background: var(--accent);
-      color: #07151a;
-    }
+/* PROJECTS */
 
-    .btn-outline {
-      color: var(--accent);
-      background: transparent;
-    }
+.project-card{position:relative;overflow:hidden}
+.project-card::after{
+  content:"";
+  position:absolute;
+  width:140px;height:140px;
+  border-radius:50%;
+  right:-75px;top:-75px;
+  background:#8b35ff12;
+  filter:blur(3px);
+}
+.project-icon{
+  width:48px;height:48px;
+  display:grid;place-items:center;
+  border:1px solid var(--border);
+  background:#9c40ff15;
+  color:var(--pink);
+  border-radius:13px;
+  font-size:20px;
+  margin-bottom:18px;
+}
+.project-card h3{font-size:16px;margin-bottom:8px}
+.project-card p{font-size:13px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:17px 0}
+.tags span{
+  color:#e1baff;
+  background:#9c40ff12;
+  border:1px solid #9c40ff32;
+  border-radius:5px;
+  padding:3px 8px;
+  font-size:10px;
+}
+.project-link{color:var(--pink);font-size:12px}
+.project-link i{margin-left:5px;transition:.3s}
+.project-link:hover i{transform:translateX(5px)}
 
-    .btn:hover {
-      transform: translateY(-3px);
-      opacity: 0.88;
-    }
+/* INTERESTS */
 
-    /* ===== GENERAL SECTIONS ===== */
-    section {
-      padding: 65px 0;
-      scroll-margin-top: 75px;
-    }
+.interests-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.interest{text-align:center;padding:25px 12px}
+.interest i{font-size:27px;color:var(--pink);margin-bottom:12px}
+.interest h3{font-size:13px}
+.interest p{font-size:11px;color:var(--muted);margin-top:5px}
 
-    .section-title {
-      font-size: clamp(1.8rem, 5vw, 2.5rem);
-      margin-bottom: 10px;
-    }
+/* CAREER */
 
-    .section-title span {
-      color: var(--accent);
-    }
+.goal-card{
+  position:relative;
+  overflow:hidden;
+  padding:32px;
+}
+.goal-card::before{
+  content:"✦";
+  position:absolute;
+  right:25px;top:0;
+  color:#b44aff22;
+  font-size:100px;
+}
+.goal-card p{max-width:780px;font-size:14px;color:#c8bddc}
+.goal-points{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.goal-points span{font-size:11px;color:#e4c6ff}
+.goal-points i{color:var(--pink);margin-right:6px}
 
-    .section-intro {
-      color: var(--muted);
-      margin-bottom: 30px;
-    }
+/* CONTACT */
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
-    }
+.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:20px}
+.contact-list{display:grid;gap:18px;margin-top:22px}
+.contact-item{display:flex;align-items:center;gap:12px;min-width:0}
+.contact-item i{
+  width:42px;height:42px;flex-shrink:0;
+  display:grid;place-items:center;
+  color:var(--pink);
+  background:#9c40ff15;
+  border:1px solid var(--border);
+  border-radius:12px;
+}
+.contact-item small{display:block;color:var(--muted);font-size:10px}
+.contact-item span,.contact-item a{font-size:12px;overflow-wrap:anywhere}
+.contact-form{display:grid;gap:13px}
+.contact-form input,.contact-form textarea{
+  width:100%;padding:13px 14px;
+  color:white;background:#080611;
+  border:1px solid var(--border);
+  border-radius:9px;font:inherit;font-size:12px;
+  outline:none;
+}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--purple)}
+.contact-form textarea{min-height:110px;resize:vertical}
+.form-note{font-size:10px;color:var(--muted)}
 
-    .card {
-      background: var(--card);
-      padding: 25px;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      transition: transform 0.25s, border-color 0.25s;
-    }
+/* FOOTER */
 
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent);
-    }
+footer{
+  padding:28px 0;
+  text-align:center;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:11px;
+}
+.socials{display:flex;justify-content:center;gap:17px;margin-bottom:14px}
+.socials a{
+  display:grid;place-items:center;
+  width:37px;height:37px;
+  border:1px solid var(--border);
+  border-radius:50%;
+  color:var(--pink);
+  transition:.3s;
+}
+.socials a:hover{background:#9c40ff20;transform:translateY(-4px)}
+.footer-script{font-family:"Dancing Script",cursive;color:var(--pink);font-size:19px;margin-top:7px}
+.top-btn{
+  position:fixed;right:20px;bottom:20px;
+  width:42px;height:42px;display:grid;place-items:center;
+  color:white;background:#8538dd;border:1px solid #ce89ff;
+  border-radius:12px;opacity:0;pointer-events:none;
+  transform:translateY(10px);transition:.3s;z-index:50;
+}
+.top-btn.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 1.15rem;
-    }
+/* RESPONSIVE */
 
-    .card p, .card li {
-      color: var(--muted);
-    }
+@media(max-width:850px){
+  nav{padding:12px 5%}
+  .menu-btn{display:block}
+  .nav-links{
+    display:none;position:absolute;top:65px;left:0;width:100%;
+    flex-direction:column;gap:0;padding:12px 6% 20px;
+    background:rgba(7,4,15,.98);border-bottom:1px solid var(--border);
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{display:block;padding:10px}
+  .nav-links a.active::after{width:35px}
+  .hero{grid-template-columns:1fr;text-align:center;gap:10px;padding-top:120px}
+  .hero-description{margin:auto}
+  .buttons{justify-content:center}
+  .profile-stage{grid-row:1;min-height:340px}
+  .orbit{width:min(280px,68vw)}
+  .floating-note{right:5%;top:5%;font-size:19px}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .scroll-cue{margin-top:25px}
+}
+@media(max-width:580px){
+  section{padding:70px 0}
+  .container{width:88%}
+  .hero h1{letter-spacing:-2px}
+  .profile-stage{min-height:300px}
+  .orbit{width:230px}
+  .float-icon.a{left:5%}
+  .grid,.skills-grid{grid-template-columns:1fr}
+  .interests-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .card{padding:19px}
+  .goal-card{padding:23px}
+  .section-title{font-size:29px}
+  .nav-links{max-height:75vh;overflow-y:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
+}
 
-    .card ul {
-      padding-left: 20px;
-    }
+/* PDF PRINT */
 
-    .icon {
-      font-size: 1.8rem;
-      margin-bottom: 12px;
-    }
-
-    .highlight {
-      color: var(--accent);
-    }
-
-    /* ===== SKILLS ===== */
-    .skill-list {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .skill {
-      border: 1px solid var(--border);
-      background: var(--card);
-      padding: 10px 16px;
-      border-radius: 8px;
-      color: var(--text);
-    }
-
-    .skill small {
-      color: var(--accent);
-    }
-
-    /* ===== CONTACT ===== */
-    .contact-card {
-      text-align: center;
-      padding: 40px 25px;
-    }
-
-    .contact-card p {
-      max-width: 600px;
-      margin: 10px auto 25px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px 0;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    /* ===== BACK TO TOP ===== */
-    #topBtn {
-      position: fixed;
-      bottom: 22px;
-      right: 22px;
-      display: none;
-      background: var(--accent);
-      color: #07151a;
-      border: none;
-      padding: 12px 16px;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      cursor: pointer;
-      z-index: 5;
-    }
-
-    /* ===== LIGHT MODE ===== */
-    body.light {
-      --bg: #f4f7fb;
-      --card: #ffffff;
-      --text: #182337;
-      --muted: #56657b;
-      --accent: #087f68;
-      --border: rgba(20,40,70,0.15);
-    }
-
-    body.light header {
-      background: rgba(244,247,251,0.95);
-    }
-
-    @media (max-width: 650px) {
-      nav {
-        padding: 14px 0;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav-links {
-        gap: 12px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        min-height: auto;
-        padding: 75px 0;
-      }
-
-      h1 {
-        letter-spacing: -1px;
-      }
-    }
-
-    @media print {
-      :root {
-        --bg: white;
-        --card: white;
-        --text: #111827;
-        --muted: #374151;
-        --accent: #087f68;
-        --border: #dddddd;
-      }
-
-      header, .buttons, #topBtn, footer {
-        display: none !important;
-      }
-
-      body {
-        background: white;
-        color: #111827;
-        font-size: 11pt;
-      }
-
-      .hero {
-        min-height: auto;
-        padding: 25px 0;
-      }
-
-      section {
-        padding: 20px 0;
-      }
-
-      .card {
-        break-inside: avoid;
-      }
-
-      .card:hover {
-        transform: none;
-      }
-
-      a {
-        text-decoration: none;
-      }
-    }
-  </style>
+@media print{
+  :root{--bg:white;--surface:white;--text:#171323;--muted:#444;--card:white;--border:#ddd}
+  body{background:white!important;color:#171323!important;font-size:10pt}
+  body::before,#stars,.ambient,header,.buttons,.scroll-cue,.top-btn,.socials,.contact-form{display:none!important}
+  section{padding:20px 0;min-height:auto;break-inside:auto}
+  .hero{min-height:auto;padding-top:20px;display:block}
+  .profile-stage{display:none}
+  .card{background:white!important;color:#171323!important;box-shadow:none!important;backdrop-filter:none;border:1px solid #ddd;break-inside:avoid}
+  .muted,.about-text,.section-intro,.project-card p,.goal-card p,.contact-item small,.interest p,.education-item p{color:#444!important}
+  .hero-description{color:#444!important}
+  .reveal{opacity:1;transform:none}
+  .section-title,.hero h1,.hero-subtitle,.card h3{color:#171323}
+  .script-name,.section-title span,.purple,.quote,.project-link,.skill-heading i,.interest i{color:#7024ae!important;text-shadow:none}
+  .fill{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  a{text-decoration:none}
+  footer{border-top:1px solid #ddd}
+  .grid,.skills-grid,.about-grid,.contact-grid{gap:10px}
+}
+</style>
 </head>
 
 <body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="ambient one"></div>
+<div class="ambient two"></div>
 
-  <!-- NAVIGATION -->
-  <header>
-    <nav class="container">
-      <a href="#home" class="logo">Kayal.</a>
+<header>
+  <nav>
+    <a href="#home" class="logo">Kayal <span>♡</span></a>
 
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#interests">Interests</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </button>
 
-  <main>
-    <!-- HOME -->
-    <section class="hero container" id="home">
-      <div class="hero-content">
-        <span class="tag">IT Student • Future Software Engineer</span>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#interests">Interests</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-        <h1>Hello, I'm <span>Kayal.</span></h1>
+<main>
+  <!-- HERO -->
+  <section class="hero container" id="home">
+    <div class="hero-content">
+      <div class="hero-tag"><span class="status-dot"></span> IT STUDENT &nbsp; | &nbsp; FUTURE SOFTWARE ENGINEER</div>
 
-        <p>
-          A first-year Information Technology student passionate
-          about programming, web development, and learning new
-          technologies. I am building my skills step by step
-          to create useful digital experiences.
-        </p>
+      <h1>Hi, I'm<br><span class="script-name">Kayal <span class="heart">♡</span></span></h1>
 
-        <div class="buttons">
-          <a href="#about" class="btn btn-primary">Explore My Resume</a>
-          <button class="btn btn-outline" id="downloadBtn">
-            Print / Save PDF
-          </button>
-          <button class="btn btn-outline" id="themeBtn">
-            Toggle Theme
-          </button>
-        </div>
+      <div class="hero-subtitle">Code <span class="purple">✦</span> Create <span class="purple">✦</span> <span id="typing">Grow</span><span class="cursor">|</span></div>
+
+      <p class="hero-description">
+        A first-year Information Technology student passionate about
+        programming, web development, and learning new technologies.
+        I am building my skills step by step to create useful digital
+        experiences and work toward my dream of becoming a software engineer.
+      </p>
+
+      <p class="hero-motto">Big dreams need small steps. ♡</p>
+
+      <div class="buttons">
+        <a href="#about" class="btn btn-primary"><i class="fas fa-sparkles"></i> Explore My Resume <i class="fas fa-arrow-right"></i></a>
+        <button class="btn btn-outline" id="downloadBtn"><i class="fas fa-download"></i> Save as PDF</button>
       </div>
-    </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="container">
-        <h2 class="section-title">About <span>Me</span></h2>
-        <p class="section-intro">
-          A little introduction about who I am and what I want to achieve.
-        </p>
-
-        <div class="card">
-          <p>
-            I am Kayal, a first-year IT student at Nehru Institute
-            of Technology. I enjoy exploring technology, learning
-            programming fundamentals, and creating websites.
-            I believe that consistent learning and practice will
-            help me grow into a skilled software engineer.
-          </p>
-          <br>
-          <p>
-            Outside academics, I love folk music, folk dance,
-            and listening to melody songs during peaceful moments.
-            Music and dance are some of my favourite ways to enjoy
-            life and express myself.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section id="education">
-      <div class="container">
-        <h2 class="section-title">My <span>Education</span></h2>
-        <p class="section-intro">
-          My academic journey and learning goals.
-        </p>
-
-        <div class="grid">
-          <article class="card">
-            <div class="icon">🎓</div>
-            <h3>Bachelor's Degree in IT</h3>
-            <p class="highlight">Nehru Institute of Technology</p>
-            <p>Currently pursuing first year.</p>
-            <p>Focus: Programming, computing fundamentals,
-              and web development.</p>
-          </article>
-
-          <article class="card">
-            <div class="icon">📚</div>
-            <h3>Continuous Learning</h3>
-            <p>
-              Learning computer science concepts, practising
-              coding problems, and developing practical projects
-              to strengthen my technical foundation.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-      <div class="container">
-        <h2 class="section-title">Technical <span>Skills</span></h2>
-        <p class="section-intro">
-          Technologies I am learning and practising.
-        </p>
-
-        <div class="skill-list">
-          <span class="skill">C Programming <small>• Learning</small></span>
-          <span class="skill">HTML <small>• Learning</small></span>
-          <span class="skill">CSS <small>• Learning</small></span>
-          <span class="skill">JavaScript <small>• Learning</small></span>
-          <span class="skill">Git & GitHub <small>• Learning</small></span>
-          <span class="skill">Problem Solving <small>• Developing</small></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- GOALS -->
-    <section id="goals">
-      <div class="container">
-        <h2 class="section-title">Career <span>Objective</span></h2>
-
-        <div class="card">
-          <p>
-            My goal is to become a skilled software engineer by
-            building strong programming fundamentals, improving
-            problem-solving abilities, and creating real-world
-            projects. I want to keep learning, contribute to
-            meaningful technology, and build a successful career.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PERSONAL INTERESTS -->
-    <section id="interests">
-      <div class="container">
-        <h2 class="section-title">Beyond <span>Technology</span></h2>
-        <p class="section-intro">
-          Things that inspire me outside my studies.
-        </p>
-
-        <div class="grid">
-          <article class="card">
-            <div class="icon">💃</div>
-            <h3>Folk Dance</h3>
-            <p>I love the energy, culture, and expression of folk dance.</p>
-          </article>
-
-          <article class="card">
-            <div class="icon">🎵</div>
-            <h3>Music</h3>
-            <p>
-              I enjoy folk music and peaceful melody songs.
-              Music helps me relax and enjoy quiet moments.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container">
-        <div class="card contact-card">
-          <h2 class="section-title">Let's <span>Connect</span></h2>
-          <p>
-            Interested in technology, learning, and collaboration?
-            Feel free to connect with me.
-          </p>
-
-          <!-- Replace these placeholder links with your own -->
-          <div class="buttons" style="justify-content:center">
-            <a class="btn btn-primary"
-               href="https://github.com/"
-               target="_blank" rel="noopener noreferrer">
-              GitHub
-            </a>
-
-            <a class="btn btn-outline"
-               href="https://www.linkedin.com/"
-               target="_blank" rel="noopener noreferrer">
-              LinkedIn
-            </a>
-          </div>
-
-          <p style="margin-top:20px;font-size:0.9rem">
-            Add your own profile links before publishing.
-          </p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>© <span id="year"></span> Kayal. Built with HTML, CSS & JavaScript.</p>
-      <p>Learning today. Building tomorrow. ✨</p>
+      <a href="#about" class="scroll-cue"><i class="fas fa-arrow-down"></i> SCROLL TO EXPLORE</a>
     </div>
-  </footer>
 
-  <button id="topBtn" aria-label="Back to top">↑</button>
+    <div class="profile-stage">
+      <span class="float-icon a"><i class="fas fa-star"></i></span>
+      <span class="float-icon b"><i class="fas fa-heart"></i></span>
 
-  <!-- JAVASCRIPT -->
-  <script>
-    // Automatically update the copyright year
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+      <div class="orbit">
+        <div class="profile-inner">
+          <!-- To add your photo, replace this placeholder with:
+          <img src="profile.jpg" alt="Kayal's profile photo">
+          Upload profile.jpg into the same GitHub repository. -->
+          <div class="profile-placeholder">
+            <i class="fas fa-user-astronaut"></i>
+            <span>Add your photo here</span>
+          </div>
+        </div>
+      </div>
 
-    // Print the resume or save it as a PDF
-    document.getElementById("downloadBtn").addEventListener("click", () => {
-      window.print();
-    });
+      <div class="floating-note">Dream <br> Learn <br> Shine ♡</div>
+    </div>
+  </section>
 
-    // Switch between dark mode and light mode
-    document.getElementById("themeBtn").addEventListener("click", () => {
-      document.body.classList.toggle("light");
+  <!-- ABOUT -->
+  <section id="about" class="reveal">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-number">01 — MY STORY</span>
+        <h2 class="section-title">About <span>Me</span></h2>
+        <p class="section-intro">A little story about who I am.</p>
+      </div>
 
-      const isLight = document.body.classList.contains("light");
-      document.getElementById("themeBtn").textContent =
-        isLight ? "Switch to Dark" : "Toggle Theme";
-    });
+      <div class="about-grid">
+        <article class="card about-text">
+          <p>
+            Hi! I'm Kayal, a first-year Information Technology student
+            at Nehru Institute of Technology. I enjoy exploring technology,
+            learning programming fundamentals, and creating websites.
+            I'm excited to develop my skills and turn creative ideas into
+            useful digital experiences.
+          </p>
+          <p>
+            Outside academics, I love folk music, folk dance, and listening
+            to melody songs during peaceful moments. Music and dance are
+            some of my favourite ways to express myself and enjoy life.
+          </p>
+          <p class="purple" style="font-family:'Dancing Script',cursive;font-size:22px">
+            Music ♬ &nbsp; Dance ♡ &nbsp; Dreams
+          </p>
+        </article>
 
-    // Show the back-to-top button when scrolling
-    const topBtn = document.getElementById("topBtn");
+        <div class="card">
+          <div class="traits">
+            <div class="trait"><i class="far fa-lightbulb"></i><h3>Creative Thinker</h3><p>Curious by nature</p></div>
+            <div class="trait"><i class="fas fa-book-open"></i><h3>Quick Learner</h3><p>Growing every day</p></div>
+            <div class="trait"><i class="far fa-heart"></i><h3>Positive Mindset</h3><p>Small steps matter</p></div>
+            <div class="trait"><i class="fas fa-people-group"></i><h3>Team Player</h3><p>Learning together</p></div>
+          </div>
+        </div>
 
-    window.addEventListener("scroll", () => {
-      topBtn.style.display = window.scrollY > 300 ? "block" : "none";
-    });
+        <div class="card quote-card">
+          <span class="quote-mark">“</span>
+          <p class="quote">Small steps every day lead to big dreams.</p>
+          <span class="quote-mark">♡</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    // Return to the top of the page
-    topBtn.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+  <!-- EDUCATION -->
+  <section id="education" class="reveal">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-number">02 — MY JOURNEY</span>
+        <h2 class="section-title">My <span>Education</span></h2>
+        <p class="section-intro">Building my foundation for the future.</p>
+      </div>
+
+      <div class="card">
+        <div class="education-item">
+          <div class="education-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div>
+            <h3>Bachelor's Degree in Information Technology</h3>
+            <p class="purple">Nehru Institute of Technology</p>
+            <span class="pill">FIRST YEAR · CURRENTLY STUDYING</span>
+            <p>Learning programming, computer fundamentals, problem solving, and web development.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-number">03 — WHAT I'M LEARNING</span>
+        <h2 class="section-title">My <span>Skills</span></h2>
+        <p class="section-intro">Growing my technical and personal abilities.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="card">
+          <h3 class="skill-heading"><i class="fas fa-code"></i> Technical Skills</h3>
+
+          <div class="skill"><div class="skill-top"><span>C Programming</span><span>Learning</span></div><div class="track"><div class="fill" style="--level:40%"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>HTML</span><span>Learning</span></div><div class="track"><div class="fill" style="--level:55%"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>CSS</span><span>Learning</span></div><div class="track"><div class="fill" style="--level:35%"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>JavaScript</span><span>Beginner</span></div><div class="track"><div class="fill" style="--level:15%"></div></div></div>
+          <div class="skill"><div class="skill-top"><span>Git & GitHub</span><span>Learning</span></div><div class="track"><div class="fill" style="--level:25%"></div></div></div>
+
+          <p class="muted" style="font-size:10px">Progress bars are illustrative. Update them as your skills grow.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="skill-heading"><i class="fas fa-wand-magic-sparkles"></i> Soft Skills</h3>
+          <div class="skill-chips">
+            <span class="chip"><i class="fas fa-comments"></i>Communication</span>
+            <span class="chip"><i class="fas fa-people-group"></i>Teamwork</span>
+            <span class="chip"><i class="fas fa-puzzle-piece"></i>Problem Solving</span>
+            <span class="chip"><i class="fas fa-clock"></i>Time Management</span>
+            <span class="chip"><i class="fas fa-book-open"></i>Continuous Learning</span>
+            <span class="chip"><i class="fas fa-lightbulb"></i>Creativity</span>
+          </div>
+          <p class="muted" style="font-size:11px;margin-top:20px">
+            My goal is to keep learning, practising, and improving.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="reveal">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-number">04 — THINGS I'M BUILDING</span>
+        <h2 class="section-title">My <span>Projects</span></h2>
+        <p class="section-intro">Small projects, big learning experiences.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card project-card">
+          <div class="project-icon"><i class="fas fa-laptop-code"></i></div>
+          <h3>Personal Digital Resume</h3>
+          <p>A responsive portfolio to introduce myself, showcase my skills, and share my goals.</p>
+          <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          <a class="project-link" href="https://github.com/" target="_blank" rel="noopener noreferrer">Add GitHub project link <i class="fas fa-arrow-right"></i></a>
+        </article>
+
+        <article class="card project-card">
+          <div class="project-icon"><i class="fas fa-calculator"></i></div>
+          <h3>Simple Calculator</h3>
+          <p>A beginner project idea for practising calculations, JavaScript logic, and user interaction.</p>
+          <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          <span class="muted" style="font-size:11px">Planned project — add your link when complete.</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREER GOAL -->
+  <section id="goals" class="reveal">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-number">MY VISION</span>
+        <h2 class="section-title">Career <span>Objective</span></h2>
+      </div>
+      <div class="card goal-card">
+        <p>
+          My ambition is to become a skilled software engineer by building
+          strong programming fundamentals, improving problem-solving
+          abilities, and developing real-world projects. I want to keep
+          learning, contribute to meaningful technology, and build a career
+          that makes me and my family proud.
+        </p>
+        <div class="goal-points">
+          <span><i class="fas fa-check-circle"></i>Learn consistently</span>
+          <span><i class="fas fa-check-circle"></i>Build real projects</span>
+          <span><i class="fas fa-check-circle"></i>Grow with technology</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERESTS -->
+  <section id="interests" class="reveal">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-number">05 — BEYOND CODE</span>
+        <h2 class="section-title">My <span>Interests</span></h2>
+        <p class="section-intro">The little things that make life beautiful.</p>
+      </div>
+
+      <div class="interests-grid">
+        <div class="card interest"><i class="fas fa-music"></i><h3>Music</h3><p>Folk & melody songs</p></div>
+        <div class="card interest"><i class="fas fa-person"></i><h3>Dance</h3><p>Especially folk dance</p></div>
+        <div class="card interest"><i class="fas fa-laptop-code"></i><h3>Technology</h3><p>Web development</p></div>
+        <div class="card interest"><i class="fas fa-seedling"></i><h3>Nature</h3><p>Peaceful moments</p></div>
+        <div class="card interest"><i class="fas fa-book-open"></i><h3>Learning</h3><p>New ideas & skills</p></div>
+        <div class="card interest"><i class="fas fa-star"></i><h3>Dreaming Big</h3><p>Growing every day</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-number">06 — SAY HELLO</span>
+        <h2 class="section-title">Let's <span>Connect</span></h2>
+        <p class="section-intro">Always happy to connect, learn, and share ideas.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="card">
+          <h3>Find me online ♡</h3>
+          <div class="contact-list">
+            <div class="contact-item"><i class="fas fa-envelope"></i><div><small>EMAIL</small><span id="emailText">Add your email address</span></div></div>
+            <div class="contact-item"><i class="fab fa-github"></i><div><small>GITHUB</small><a id="githubText" href="https://github.com/" target="_blank" rel="noopener noreferrer">Add your GitHub profile</a></div></div>
+            <div class="contact-item"><i class="fab fa-linkedin-in"></i><div><small>LINKEDIN</small><a id="linkedinText" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">Add your LinkedIn profile</a></div></div>
+          </div>
+          <p class="muted" style="font-size:11px;margin-top:22px">Replace the sample profile links and contact details before publishing.</p>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-bottom:16px">Send a message</h3>
+          <form class="contact-form" id="contactForm">
+            <input type="text" id="senderName" placeholder="Your name" maxlength="100" required>
+            <input type="email" id="senderEmail" placeholder="Your email address" maxlength="150" required>
+            <textarea id="senderMessage" placeholder="Write your message..." maxlength="2000" required></textarea>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Prepare Email</button>
+            <p class="form-note">Opens your email app; the website does not send messages directly.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="socials">
+      <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#interests" aria-label="Interests"><i class="fas fa-heart"></i></a>
+    </div>
+    <p>© <span id="year"></span> Kayal. All rights reserved.</p>
+    <p class="footer-script">Keep dreaming. Keep growing. ♡</p>
+  </div>
+</footer>
+
+<a class="top-btn" id="topBtn" href="#home" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+
+<script>
+/* =====================================================
+   KAYAL'S DIGITAL RESUME — JAVASCRIPT
+   ===================================================== */
+
+// Update footer year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Mobile navigation
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+  const opened = navLinks.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", String(opened));
+  menuBtn.innerHTML = opened
+    ? '<i class="fas fa-xmark"></i>'
+    : '<i class="fas fa-bars"></i>';
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+  });
+});
+
+// Cinematic typing animation
+const typing = document.getElementById("typing");
+const phrases = ["Create", "Dream", "Explore", "Grow"];
+let phraseIndex = 0;
+let letterIndex = 0;
+let deleting = false;
+
+function typeLoop() {
+  const phrase = phrases[phraseIndex];
+  typing.textContent = phrase.substring(0, letterIndex);
+
+  let delay = deleting ? 55 : 105;
+
+  if (!deleting && letterIndex < phrase.length) {
+    letterIndex++;
+  } else if (!deleting) {
+    deleting = true;
+    delay = 1000;
+  } else if (letterIndex > 0) {
+    letterIndex--;
+  } else {
+    deleting = false;
+    phraseIndex = (phraseIndex + 1) % phrases.length;
+    delay = 250;
+  }
+
+  setTimeout(typeLoop, delay);
+}
+typeLoop();
+
+// Reveal content when sections enter the viewport
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+  revealObserver.observe(element);
+});
+
+// Animate skill progress bars
+const skillsSection = document.getElementById("skills");
+const skillObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      skillsSection.querySelectorAll(".fill").forEach(bar => {
+        bar.classList.add("animate");
       });
-    });
-  </script>
+      skillObserver.unobserve(skillsSection);
+    }
+  });
+}, { threshold: 0.15 });
+skillObserver.observe(skillsSection);
 
+// Active navigation and back-to-top button
+const topBtn = document.getElementById("topBtn");
+const pageSections = document.querySelectorAll("main section[id]");
+const navItems = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+  topBtn.classList.toggle("show", window.scrollY > 400);
+
+  let current = "home";
+  pageSections.forEach(section => {
+    if (window.scrollY >= section.offsetTop - 170) {
+      current = section.id;
+    }
+  });
+
+  navItems.forEach(link => {
+    link.classList.toggle(
+      "active",
+      link.getAttribute("href") === "#" + current
+    );
+  });
+}, { passive: true });
+
+// Print or save the resume as a PDF
+document.getElementById("downloadBtn").addEventListener("click", () => {
+  window.print();
+});
+
+// Contact form: compose a message in the visitor's email app
+document.getElementById("contactForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  // Replace with Kayal's actual email address.
+  const recipient = "YOUR_EMAIL@example.com";
+
+  if (recipient === "YOUR_EMAIL@example.com") {
+    alert("Please add your email address in the contact form JavaScript before using this feature.");
+    return;
+  }
+
+  const name = document.getElementById("senderName").value.trim();
+  const email = document.getElementById("senderEmail").value.trim();
+  const message = document.getElementById("senderMessage").value.trim();
+
+  const subject = encodeURIComponent("Portfolio message from " + name);
+  const body = encodeURIComponent(
+    "Name: " + name + "\nEmail: " + email + "\n\n" + message
+  );
+
+  window.location.href =
+    "mailto:" + recipient + "?subject=" + subject + "&body=" + body;
+});
+
+// Twinkling starfield
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+let stars = [];
+let canvasWidth = 0;
+let canvasHeight = 0;
+let animationFrame;
+let lastStarFrame = 0;
+
+function resizeCanvas() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvasWidth = window.innerWidth;
+  canvasHeight = window.innerHeight;
+  canvas.width = canvasWidth * dpr;
+  canvas.height = canvasHeight * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const count = Math.min(100, Math.floor(canvasWidth / 10));
+  stars = Array.from({ length: count }, () => ({
+    x: Math.random() * canvasWidth,
+    y: Math.random() * canvasHeight,
+    radius: Math.random() * 1.5 + 0.3,
+    alpha: Math.random(),
+    speed: Math.random() * 0.012 + 0.003
+  }));
+}
+
+function drawStars(time) {
+  animationFrame = requestAnimationFrame(drawStars);
+
+  // Reduce animation work when the page is not visible.
+  if (document.hidden || time - lastStarFrame < 45) return;
+  lastStarFrame = time;
+
+  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+  stars.forEach(star => {
+    star.alpha += star.speed;
+    const opacity = 0.2 + (Math.sin(star.alpha) + 1) * 0.35;
+
+    ctx.beginPath();
+    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(204, 135, 255, ${opacity})`;
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = "#a344ff";
+    ctx.fill();
+  });
+
+  ctx.shadowBlur = 0;
+}
+
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+animationFrame = requestAnimationFrame(drawStars);
+
+// Stop the starfield when the tab is hidden to save resources.
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = requestAnimationFrame(drawStars);
+  }
+});
+</script>
 </body>
 </html>
